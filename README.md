@@ -15,10 +15,10 @@
      kubectl get pvc
 
 **Access Modes**:
-- RWO: ReadWriteOnce (The volume can be mounted as read-write by a Single node)
-- ROX: ReadOnlyMany (The volume can be mounted as read only by many nodes)
-- RWX: ReadWriteMany (The volume can be mounted as read-write by many nodes)
-- RWOP: ReadWriteOncePod (The volume can be mounted as read-write by a Single )
+- **RWO**: ReadWriteOnce (The volume can be mounted as **read-write by a Single node**)
+- **ROX**: ReadOnlyMany (The volume can be mounted as **read only by many nodes**)
+- **RWX**: ReadWriteMany (The volume can be mounted as **read-write by many nodes**)
+- **RWOP**: ReadWriteOncePod (The volume can be mounted as **read-write by a Single** )
 
 **GB & GI**
 - GB == Gigabyte , 1GB = 10^9 bytes used by storage (for hard drive SSD)
@@ -41,10 +41,10 @@ SC is one who helps to make dynamic gain persistent storage. Storage Class need 
 
     kubectl get sc 
 
-Driver / Provisioner:
+**Driver / Provisioner:**
  - If we want external persistent volume like AWS EFS S3 or Azure or other many; then we need to install driver of that external storage.
 
-Container storage interface[CSI]:
+**Container storage interface[CSI]:**
  - CSI is just concept.
  - CSI helps to install driver/provisioner for SC. 
  
