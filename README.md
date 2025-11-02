@@ -3,4 +3,7 @@
   - k8s provide by default **Empheral storage(temporary storage) volume**, it's means life of volume is equal to life of pod, if pod goes deleted then Data also deleted, So we use external volume by using PV.
   - So, make our data permenant or persistent we use **persistent volume[PV]** in k8s.
 
-In Kubernetes we can achieve Persistent storage [PV] by two way that is Manual & Dynamic.
+## In Kubernetes we can achieve Persistent storage [PV] by two way that is:
+  1. Manual (By creating manually pvc pv)
+  2. Dynamic (By using SC and pvc , pv dynamically created by SC)
+  3. Dynamic (Create all pvc, pv and sc)
