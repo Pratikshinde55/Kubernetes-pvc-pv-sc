@@ -76,7 +76,8 @@ But, t2.micro only suuport 4 pods and system k8s pods are taken that space, so i
       --nodes-max=1 \
       --region=ap-south-1
 
-    
+**New nodegroup added to my old cluster**    
+<img width="1892" height="188" alt="image" src="https://github.com/user-attachments/assets/9ef48fd4-0042-4566-b5b8-e77c648e8cca" />
 
 before apply pvc there is no pv and pvc only sc :
 <img width="1491" height="326" alt="image" src="https://github.com/user-attachments/assets/e8aafaca-b87e-4f4d-b55a-52becd1de7d7" />
