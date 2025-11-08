@@ -60,7 +60,7 @@ before apply pvc there is no pv and pvc only sc :
 <img width="1491" height="326" alt="image" src="https://github.com/user-attachments/assets/e8aafaca-b87e-4f4d-b55a-52becd1de7d7" />
 
 
-
+After pvc claim no pv created because in SC "VOLUMEBINDINGMODE" is "WaitForFirstConsumer". So when any pod try use this pvc claim then only pv create and bound to the PV to pvc.
 <img width="1491" height="785" alt="image" src="https://github.com/user-attachments/assets/db01ca5c-2781-4e12-bdf6-e1d8254669a2" />
 
 
