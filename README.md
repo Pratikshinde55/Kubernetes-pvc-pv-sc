@@ -56,11 +56,33 @@ SC is one who helps to make dynamic gain persistent storage. Storage Class need 
 
 # 1 Dynamic PV :
 
+i have used aws eks with single node cluster:
+
+       eksctl create cluster  --name pscluster  --region ap-south-1  --version 1.30  --nodegroup-name psnodegp --instance-types t2.micro --nodes 3  --nodes-min 3  --nodes-max 6 --node-volume-size 8  --node-volume-type gp3  --ssh-access   --enable-ssm --instance-name psworkernode  --managed
+
+      
+      <img width="1691" height="921" alt="image" src="https://github.com/user-attachments/assets/4f91d01a-cd26-480b-91fc-2568db7c46a5" />
+
+
+But, t2.micro only suuport 4 pods and system k8s pods are taken that space, so i need to scale-out nodegroup in my cluster:
+
+      eksctl create nodegroup \
+      --cluster=pscluster \
+      --name=ps-demo \
+      --node-type=t2.micro \
+      --nodes=1 \
+      --nodes-min=1 \
+      --nodes-max=1 \
+      --region=ap-south-1
+
+    
+
 before apply pvc there is no pv and pvc only sc :
 <img width="1491" height="326" alt="image" src="https://github.com/user-attachments/assets/e8aafaca-b87e-4f4d-b55a-52becd1de7d7" />
 
 
 After pvc claim no pv created because in SC "VOLUMEBINDINGMODE" is "WaitForFirstConsumer". So when any pod try use this pvc claim then only pv create and bound to the PV to pvc.
 <img width="1491" height="785" alt="image" src="https://github.com/user-attachments/assets/db01ca5c-2781-4e12-bdf6-e1d8254669a2" />
+
 
 
