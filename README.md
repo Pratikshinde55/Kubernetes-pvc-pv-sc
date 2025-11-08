@@ -61,7 +61,7 @@ i have used aws eks with single node cluster:
        eksctl create cluster  --name pscluster  --region ap-south-1  --version 1.30  --nodegroup-name psnodegp --instance-types t2.micro --nodes 3  --nodes-min 3  --nodes-max 6 --node-volume-size 8  --node-volume-type gp3  --ssh-access   --enable-ssm --instance-name psworkernode  --managed
 
       
-      <img width="1691" height="921" alt="image" src="https://github.com/user-attachments/assets/4f91d01a-cd26-480b-91fc-2568db7c46a5" />
+<img width="1691" height="921" alt="image" src="https://github.com/user-attachments/assets/4f91d01a-cd26-480b-91fc-2568db7c46a5" />
 
 
 But, t2.micro only suuport 4 pods and system k8s pods are taken that space, so i need to scale-out nodegroup in my cluster:
