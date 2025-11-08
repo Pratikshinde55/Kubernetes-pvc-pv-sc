@@ -61,4 +61,6 @@ before apply pvc there is no pv and pvc only sc :
 
 
 
+<img width="1491" height="785" alt="image" src="https://github.com/user-attachments/assets/db01ca5c-2781-4e12-bdf6-e1d8254669a2" />
+
 
