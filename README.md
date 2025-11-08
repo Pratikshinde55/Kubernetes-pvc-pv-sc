@@ -54,4 +54,11 @@ SC is one who helps to make dynamic gain persistent storage. Storage Class need 
   3. Dynamic (Create all pvc, pv and sc)
 
 
+# 1 Dynamic PV :
+
+before apply pvc there is no pv and pvc only sc :
+<img width="1491" height="326" alt="image" src="https://github.com/user-attachments/assets/e8aafaca-b87e-4f4d-b55a-52becd1de7d7" />
+
+
+
 
