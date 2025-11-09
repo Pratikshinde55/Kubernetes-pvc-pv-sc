@@ -312,6 +312,8 @@ EFS CSI needed:
         --cluster pscluster \
         --approve
 
+  <img width="1556" height="141" alt="image" src="https://github.com/user-attachments/assets/267ec9df-665e-4f4e-a086-7aa87b11969c" />
+
 2. Create IAM Policy for EFS CSI:
 
         curl -o iam-policy-efs.json https://raw.githubusercontent.com/kubernetes-sigs/aws-efs-csi-driver/master/docs/iam-policy-example.json
