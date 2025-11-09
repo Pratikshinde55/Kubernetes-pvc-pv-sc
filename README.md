@@ -189,3 +189,6 @@ Note: don't use t2.micro otherwise this error show:
 
 <img width="1288" height="485" alt="image" src="https://github.com/user-attachments/assets/61e4410d-d82f-4b9d-ac74-355ec2489055" />
 
+9. Create SC:
+
+    <img width="1752" height="768" alt="image" src="https://github.com/user-attachments/assets/a83cc6be-cc21-482d-94a7-362a63cd2508" />
