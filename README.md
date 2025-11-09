@@ -101,9 +101,14 @@ If labels to nodes not apply then run this command:
 - dedicated=ps:NoSchedule => Block normal pods from scheduling there
 - PS namespace pods can run there, Cluster system pods and other apps cannot run there.
 
- 5. Create namespace:
+ 5. Create namespace and add to node label:
 
-        kubectl create namespace ps-namespace
+ <img width="1254" height="439" alt="image" src="https://github.com/user-attachments/assets/958d9cf4-41f2-42c9-86a5-5b54a2ab150a" />
+
+ Annotations:  scheduler.alpha.kubernetes.io/node-selector: node-type=ps
+
+ This means all pods in ps-namespace will automatically go to node-type=ps (my isolated server node). 
+ This ensures any pod in ps-namespace will automatically schedule to PS node.
 
 **Note:**
 - Namespaces are NOT created on nodes
