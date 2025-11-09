@@ -349,14 +349,18 @@ Then Create IAM Policy for EFS CSI:
 
   <img width="1890" height="328" alt="image" src="https://github.com/user-attachments/assets/cb631c4c-1d44-4bd1-8ed1-011fa6e014b6" />
 
-5. Verify it running:
+5. Attach role policy:
+
+   There is role name length issue this will solve then add in repo......
+
+6. Verify it running:
 
            kubectl get pods -n kube-system | grep efs
    
   <img width="1737" height="131" alt="image" src="https://github.com/user-attachments/assets/e75aabb4-a7bf-4ea9-9026-eddfefca9960" />
 
 
-6. Create SC for efs: (For this we efs id and efs access point / if access point not present then also work, But efs id needed)
+7. Create SC for efs: (For this we efs id and efs access point / if access point not present then also work, But efs id needed)
 
             kubectl apply -f efs-sc.yaml
 
