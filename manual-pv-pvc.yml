@@ -1,0 +1,39 @@
+# THis is fro manual PV creation for HostPath 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: manual-hostpath-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  hostPath:
+    path: /data/myapp       # This is EC2 location where our app mount
+    type: DirectoryOrCreate
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:   # This helps to use node with label nodetype: ps , but for multiple nodes hostPath not work
+        - key: node-type
+          operator: In
+          values:
+          - ps
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: manual-pvc
+  namespace: ps-namespace
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: ""
+  volumeName: manual-hostpath-pv    # here we mention pv name
+
