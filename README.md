@@ -260,6 +260,11 @@ In this type we don't use SC means directly use hostPath for my setup. We define
 
   <img width="1193" height="435" alt="image" src="https://github.com/user-attachments/assets/f0338e34-c20c-468a-94a7-1a1de1e95a45" />
 
+By describe the pv we also able to see Hostpath:
+
+  <img width="1186" height="485" alt="image" src="https://github.com/user-attachments/assets/61e38fe8-fb56-4e5f-8430-6cf1c9b1b5c4" />
+
+
 3. Now test from EC2: On EC2 the hostPath store data at pv mentioned location that is **/data/myapp**
 
      <img width="1712" height="312" alt="image" src="https://github.com/user-attachments/assets/8066517d-78fb-412b-b4bd-5a8dd49e460a" />
@@ -267,3 +272,6 @@ In this type we don't use SC means directly use hostPath for my setup. We define
 4. Browser Look:
 
    <img width="1360" height="266" alt="image" src="https://github.com/user-attachments/assets/5e5d1556-5cb9-4ef0-8741-1130f5cfe895" />
+
+
+# PVC PV SC:
