@@ -243,3 +243,15 @@ Here i use ebs driver for this demo, Please chcek how do set-up for ebs gp3 driv
 
 
 # 2. PVC PV created manually:
+In this type we don't use SC means directly use hostPath for my setup. We define pv and pvc manually and also created.
+
+
+1. create PV and PVC manually:
+
+           kubectl apply -f manual-pv-pvc.yml
+
+   <img width="1905" height="577" alt="image" src="https://github.com/user-attachments/assets/46d21c33-22a3-401b-9349-a401f3acea5e" />
+
+   In abhove image we can see that as sson we create pv and pv then they both bound at same time and not using any SC
+
+2.     
