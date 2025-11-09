@@ -122,6 +122,34 @@ Note: don't use t2.micro otherwise this error show:
 
 
 
+# Install SC for gp3 EBS csi driver:
 
 
+1. Install EBS driver:
+   
+      eksctl create addon \
+      --name aws-ebs-csi-driver \
+      --cluster pscluster \
+      --region ap-south-1 \
+      --force
+
+
+2. Check csi driver - ebs-csi-controller-  , ebs-csi-node- :
+
+      kubectl get pods -n kube-system:
+
+3.  Downlaod ebs 
+
+       curl -o ebs-csi-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-ebs-csi-driver/master/docs/example-iam-policy.json
+
+4.  Create IAM policy for EBS:
+
+
+      aws iam create-policy \
+      --policy-name AmazonEKS_EBS_CSI_Driver_Policy \
+      --policy-document file://ebs-csi-policy.json
+
+<img width="1797" height="708" alt="image" src="https://github.com/user-attachments/assets/59bc438f-541a-4546-a064-aadaa172d7c9" />
+
+5.  
 
