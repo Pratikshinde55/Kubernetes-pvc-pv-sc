@@ -192,3 +192,29 @@ Note: don't use t2.micro otherwise this error show:
 9. Create SC:
 
     <img width="1752" height="768" alt="image" src="https://github.com/user-attachments/assets/a83cc6be-cc21-482d-94a7-362a63cd2508" />
+
+
+
+# 1. Dynamic pv created by using PVC and SC: 
+Here i use ebs driver for this demo, Please chcek how do set-up for ebs gp3 driver on AWS EKS.
+
+1. Before creation set-up:
+   <img width="1660" height="323" alt="image" src="https://github.com/user-attachments/assets/6f697946-134d-4bab-81f3-724a47a94e17" />
+
+2. After apply pvc then pvc status become pending because the sc volumebinding is waitforfirstconsumer:
+
+         kubectl apply -f my-app-pvc.yml
+
+ <img width="1592" height="277" alt="image" src="https://github.com/user-attachments/assets/e961dc22-af6f-42a5-9d7b-5d77b4092a91" />
+
+4. As soon as Pod use the pvc claim then pv created and bind to pvc:
+
+        kubectl apply -f my-app.yml
+
+   <img width="1890" height="460" alt="image" src="https://github.com/user-attachments/assets/812a27a0-be86-47eb-b0da-ae320f8fa6fb" />
+
+
+5. pvc status show bound:
+
+   <img width="1877" height="442" alt="image" src="https://github.com/user-attachments/assets/760fc7b5-1811-4af9-94dd-adf56f8ccd8a" />
+
