@@ -123,6 +123,11 @@ Note: don't use t2.micro otherwise this error show:
 
 
 # Install SC for gp3 EBS csi driver:
+EBS CSI needed:
+  1. IAM OIDC setup
+  2. IAM Role for CSI driver
+  3. Correct addon install
+  4. NodeGroup permissions
 
 
 1. Check csi driver - ebs-csi-controller-  , ebs-csi-node- :
