@@ -63,28 +63,28 @@ SC is one who helps to make dynamic gain persistent storage. Storage Class need 
        --region ap-south-1 \
        --version 1.30 --without-nodegroup
    
-2.  Create DEFAULT Worker:s
+2. Create DEFAULT Worker:s
 
-       eksctl create nodegroup \
-       --cluster pscluster \
-       --region ap-south-1 \
-       --name default-nodes \
-       --node-type t3.small \
-       --nodes 1 \
-       --managed \
-       --enable-ssm
+        eksctl create nodegroup \
+        --cluster pscluster \
+        --region ap-south-1 \
+        --name default-nodes \
+        --node-type t3.small \
+        --nodes 1 \
+        --managed \
+        --enable-ssm
 
  3. Create PS Dedicated Server Node (isolated server)
 
-      eksctl create nodegroup \
-      --cluster pscluster \
-      --region ap-south-1 \
-      --name ps-server-nodes \
-      --node-type t3.small \
-      --nodes 1 \  
-      --managed \
-      --node-labels node-type=ps \
-      --enable-ssm
+        eksctl create nodegroup \
+        --cluster pscluster \
+        --region ap-south-1 \
+        --name ps-server-nodes \
+        --node-type t3.small \
+        --nodes 1 \  
+        --managed \
+        --node-labels node-type=ps \
+        --enable-ssm
 
  4. 
 - Note: don't use t2.micro otherwise this error show:
