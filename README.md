@@ -85,9 +85,30 @@ SC is one who helps to make dynamic gain persistent storage. Storage Class need 
         --managed \
         --node-labels node-type=ps \
         --enable-ssm
+    
 
- 4. 
-- Note: don't use t2.micro otherwise this error show:
+ 5. Taint PS Node (prevent other workloads):
+
+        kubectl taint nodes -l node-type=ps dedicated=ps:NoSchedule
+
+**What this does:**
+- This taints the PS node so that NO other pods can run on it unless they explicitly tolerate that taint.
+- -l node-type=ps => Select nodes with label node-type=ps
+- taint nodes => Apply taint to those nodes
+- dedicated=ps:NoSchedule => Block normal pods from scheduling there
+- PS namespace pods can run there, Cluster system pods and other apps cannot run there.
+
+ 5. Create namespace:
+
+      kubectl create namespace ps-namespace
+
+**Note:**
+- Namespaces are NOT created on nodes
+- Namespaces are Kubernetes logical spaces, not tied to a single node.
+- we cannot create a namespace inside a node.
+
+  
+Note: don't use t2.micro otherwise this error show:
 **This image show the error that unable to launch pods in nodegroup:**
 <img width="1691" height="921" alt="image" src="https://github.com/user-attachments/assets/4f91d01a-cd26-480b-91fc-2568db7c46a5" />
 
