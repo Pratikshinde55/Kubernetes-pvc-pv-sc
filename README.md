@@ -54,8 +54,39 @@ SC is one who helps to make dynamic gain persistent storage. Storage Class need 
   3. Dynamic (Create all pvc, pv and sc)
 
 
-# 1 Dynamic PV :
+# EKS cluster:
 
+1. Create cluster without nodes first:
+
+       eksctl create cluster \
+       --name pscluster \
+       --region ap-south-1 \
+       --version 1.30 --without-nodegroup
+   
+2.  Create DEFAULT Worker:s
+
+       eksctl create nodegroup \
+       --cluster pscluster \
+       --region ap-south-1 \
+       --name default-nodes \
+       --node-type t3.small \
+       --nodes 1 \
+       --managed \
+       --enable-ssm
+
+ 3. Create PS Dedicated Server Node (isolated server)
+
+      eksctl create nodegroup \
+      --cluster pscluster \
+      --region ap-south-1 \
+      --name ps-server-nodes \
+      --node-type t3.small \
+      --nodes 1 \  
+      --managed \
+      --node-labels node-type=ps \
+      --enable-ssm
+
+ 4. 
 - Note: don't use t2.micro otherwise this error show:
 **This image show the error that unable to launch pods in nodegroup:**
 <img width="1691" height="921" alt="image" src="https://github.com/user-attachments/assets/4f91d01a-cd26-480b-91fc-2568db7c46a5" />
