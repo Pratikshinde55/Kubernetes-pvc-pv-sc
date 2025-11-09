@@ -354,3 +354,11 @@ Then Create IAM Policy for EFS CSI:
            kubectl get pods -n kube-system | grep efs
    
   <img width="1737" height="131" alt="image" src="https://github.com/user-attachments/assets/e75aabb4-a7bf-4ea9-9026-eddfefca9960" />
+
+
+6. Create SC for efs: (For this we efs id and efs access point / if access point not present then also work, But efs id needed)
+
+            kubectl apply -f efs-sc.yaml
+
+  <img width="1892" height="664" alt="image" src="https://github.com/user-attachments/assets/e0708367-6924-4465-8c13-26d6e4446ed9" />
+
