@@ -199,6 +199,24 @@ EBS CSI needed:
     <img width="1752" height="768" alt="image" src="https://github.com/user-attachments/assets/a83cc6be-cc21-482d-94a7-362a63cd2508" />
 
 
+**Note**- [How to remove ebs csi driver]
+
+- Delete addons 1st:
+
+             eksctl delete addon \
+             --cluster pscluster \
+             --name aws-ebs-csi-driver \
+             --preserve
+
+- Remove leftover EBS pods:
+
+             kubectl delete deployment -n kube-system ebs-csi-controller
+             kubectl delete daemonset -n kube-system ebs-csi-node
+
+- Confirm:
+
+             kubectl get pods -n kube-system | grep ebs
+
 
 # 1. Dynamic pv created by using PVC and SC: 
 Here i use ebs driver for this demo, Please chcek how do set-up for ebs gp3 driver on AWS EKS.
