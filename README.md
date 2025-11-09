@@ -264,3 +264,6 @@ In this type we don't use SC means directly use hostPath for my setup. We define
 
      <img width="1712" height="312" alt="image" src="https://github.com/user-attachments/assets/8066517d-78fb-412b-b4bd-5a8dd49e460a" />
 
+4. Browser Look:
+
+   <img width="1360" height="266" alt="image" src="https://github.com/user-attachments/assets/5e5d1556-5cb9-4ef0-8741-1130f5cfe895" />
