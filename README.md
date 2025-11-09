@@ -56,32 +56,13 @@ SC is one who helps to make dynamic gain persistent storage. Storage Class need 
 
 # 1 Dynamic PV :
 
-i have used aws eks with single node cluster:
 
-       eksctl create cluster  --name pscluster  --region ap-south-1  --version 1.30  --nodegroup-name psnodegp --instance-types t2.micro --nodes 3  --nodes-min 3  --nodes-max 6 --node-volume-size 8  --node-volume-type gp3  --ssh-access   --enable-ssm --instance-name psworkernode  --managed
-
-
+- Note: don't use t2.micro otherwise this error show:
 **This image show the error that unable to launch pods in nodegroup:**
 <img width="1691" height="921" alt="image" src="https://github.com/user-attachments/assets/4f91d01a-cd26-480b-91fc-2568db7c46a5" />
 
 
-But, t2.micro only suuport 4 pods and system k8s pods are taken that space, so i need to scale-out nodegroup in my cluster:
 
-      eksctl create nodegroup \
-      --cluster=pscluster \
-      --name=ps-demo \
-      --node-type=t2.micro \
-      --nodes=1 \
-      --nodes-min=1 \
-      --nodes-max=1 \
-      --region=ap-south-1
-
-**New nodegroup added to my old cluster**    
-<img width="1892" height="188" alt="image" src="https://github.com/user-attachments/assets/9ef48fd4-0042-4566-b5b8-e77c648e8cca" />
-
-And then add label to node in that nodegroup manually:
-
-     kubectl label node ip-192-168-60-20.ap-south-1.compute.internal env=demo
 
 before apply pvc there is no pv and pvc only sc :
 <img width="1491" height="326" alt="image" src="https://github.com/user-attachments/assets/e8aafaca-b87e-4f4d-b55a-52becd1de7d7" />
