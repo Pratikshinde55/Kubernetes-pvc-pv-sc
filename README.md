@@ -125,31 +125,67 @@ Note: don't use t2.micro otherwise this error show:
 # Install SC for gp3 EBS csi driver:
 
 
-1. Install EBS driver:
-   
-      eksctl create addon \
-      --name aws-ebs-csi-driver \
-      --cluster pscluster \
-      --region ap-south-1 \
-      --force
+1. Check csi driver - ebs-csi-controller-  , ebs-csi-node- :
 
+          kubectl get pods -n kube-system
 
-2. Check csi driver - ebs-csi-controller-  , ebs-csi-node- :
+2.  Downlaod ebs 
 
-      kubectl get pods -n kube-system:
+         curl -o ebs-csi-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-ebs-csi-driver/master/docs/example-iam-policy.json
 
-3.  Downlaod ebs 
+3.  Create IAM policy for EBS:
 
-       curl -o ebs-csi-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-ebs-csi-driver/master/docs/example-iam-policy.json
-
-4.  Create IAM policy for EBS:
-
-
-      aws iam create-policy \
-      --policy-name AmazonEKS_EBS_CSI_Driver_Policy \
-      --policy-document file://ebs-csi-policy.json
+        aws iam create-policy \
+        --policy-name AmazonEKS_EBS_CSI_Driver_Policy \
+        --policy-document file://ebs-csi-policy.json
 
 <img width="1797" height="708" alt="image" src="https://github.com/user-attachments/assets/59bc438f-541a-4546-a064-aadaa172d7c9" />
 
-5.  
+4.   IAM OIDC provider enabled:
+
+        eksctl utils associate-iam-oidc-provider \
+        --region ap-south-1 \
+        --cluster pscluster \
+        --approve
+
+<img width="1590" height="177" alt="image" src="https://github.com/user-attachments/assets/13779417-d31e-47ef-9bbd-6e9fc1685070" />
+     
+5.  Service account:
+
+           eksctl create iamserviceaccount \
+           --cluster pscluster \
+           --namespace kube-system \
+           --name ebs-csi-controller-sa \
+          --attach-policy-arn arn:aws:iam::12345667890:policy/AmazonEKS_EBS_CSI_Driver_Policy \
+          --approve \
+          --override-existing-serviceaccounts \
+          --role-name AmazonEKS_EBS_CSI_Driver_Role
+
+ <img width="1873" height="510" alt="image" src="https://github.com/user-attachments/assets/30b17c8d-5f5a-4819-91b1-0569245ff315" />
+         
+6. verfiy version of addons:
+
+         eksctl get addons --cluster pscluster
+
+<img width="1891" height="340" alt="image" src="https://github.com/user-attachments/assets/92a75b05-9f4a-468e-8062-ea9a5b0734cd" />
+
+
+7. create addon:
+
+          eksctl create addon \
+          --cluster pscluster \
+          --name aws-ebs-csi-driver \
+          --version v1.52.1-eksbuild.1 \
+          --force \
+          --service-account-role-arn arn:aws:iam::1234567890:role/AmazonEKS_EBS_CSI_Driver_Role
+      
+<img width="1872" height="317" alt="image" src="https://github.com/user-attachments/assets/34e0b13b-32d4-4825-9490-9f418ea35eb3" />
+
+8 .add:
+
+         aws iam attach-role-policy \
+        --role-name eksctl-pscluster-nodegroup-default-NodeInstanceRole-gSsq8QpLqCEa \
+        --policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy
+
+<img width="1288" height="485" alt="image" src="https://github.com/user-attachments/assets/61e4410d-d82f-4b9d-ac74-355ec2489055" />
 
