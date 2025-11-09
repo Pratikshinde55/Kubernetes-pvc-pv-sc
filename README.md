@@ -218,3 +218,23 @@ Here i use ebs driver for this demo, Please chcek how do set-up for ebs gp3 driv
 
    <img width="1877" height="442" alt="image" src="https://github.com/user-attachments/assets/760fc7b5-1811-4af9-94dd-adf56f8ccd8a" />
 
+
+6. Check how bound work:
+
+   i am go inside that pods and go to mountPath and create index.html folder.
+   <img width="1387" height="696" alt="image" src="https://github.com/user-attachments/assets/4ee8cade-4067-4380-bdab-2323e9ced008" />
+
+7. Now check uid of pod:
+
+          kubectl get pod my-app-67b8bbbfdd-pzkxq -n ps-namespace -o jsonpath='{.metadata.uid}'
+
+   <img width="1421" height="60" alt="image" src="https://github.com/user-attachments/assets/a8bb9442-58de-4e26-9f1d-d78cf2c9c593" />
+
+8. Now Go inside EC2 instance of that pods:
+
+          kubectl get pods -n ps-namespace -o wide
+
+   Then check at location: **/var/lib/kubelet/pods/7a99da45-5654-4d95-93d4-9d39b57e8cc9/volumes/kubernetes.io~csi/pvc-b6cd57b2-ea9a-41a4-8aa6-3f566fcedc30/mount**
+
+   Here 7a99da45-5654-4d95-93d4-9d39b57e8cc9 this is pod uid and kubernetes.io~csi this is driver name and pvc-b6cd57b2-ea9a-41a4-8aa6-3f566fcedc30 this is pvc claim name.
+   
