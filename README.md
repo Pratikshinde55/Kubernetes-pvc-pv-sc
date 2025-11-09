@@ -298,4 +298,57 @@ In this type we don't use SC means directly use hostPath for my setup. We define
    <img width="1360" height="266" alt="image" src="https://github.com/user-attachments/assets/5e5d1556-5cb9-4ef0-8741-1130f5cfe895" />
 
 
-# PVC PV SC:
+# EFS CSI install:
+EFS CSI needed:
+  - IAM OIDC setup / Verify OIDC exists
+  -  Create IAM Policy for EFS CSI
+  -  Create IAM Service Account
+  -  Install EFS CSI Driver
+
+1. Verify OIDC exists:
+
+        eksctl utils associate-iam-oidc-provider \
+        --region ap-south-1 \
+        --cluster pscluster \
+        --approve
+
+2. Create IAM Policy for EFS CSI:
+
+        curl -o iam-policy-efs.json https://raw.githubusercontent.com/kubernetes-sigs/aws-efs-csi-driver/master/docs/iam-policy-example.json
+
+Then Create IAM Policy for EFS CSI:
+
+        aws iam create-policy \
+        --policy-name AmazonEKS_EFS_CSI_Driver_Policy \
+        --policy-document file://iam-policy-efs.json
+
+<img width="1848" height="627" alt="image" src="https://github.com/user-attachments/assets/6696a272-17a3-4003-b25c-602420eb5d26" />
+
+3. Create IAM Service Account:
+
+        eksctl create iamserviceaccount \
+        --cluster pscluster \
+        --namespace kube-system \
+        --name efs-csi-controller-sa \
+        --attach-policy-arn arn:aws:iam::1234567890:policy/AmazonEKS_EFS_CSI_Driver_Policy \
+        --approve \
+        --override-existing-serviceaccounts
+
+<img width="1852" height="442" alt="image" src="https://github.com/user-attachments/assets/f8620653-bac1-45cb-8d6c-1ae5f29042f7" />
+
+4. Install EFS CSI Driver:
+
+        eksctl create addon \
+        --name aws-efs-csi-driver \
+        --cluster pscluster \
+        --region ap-south-1 \
+        --service-account-role-arn arn:aws:iam::1234567890:role/eksctl-pscluster-addon-iamserviceaccount-kube-system-efs-csi-controller-sa-role \
+        --force
+
+  <img width="1890" height="328" alt="image" src="https://github.com/user-attachments/assets/cb631c4c-1d44-4bd1-8ed1-011fa6e014b6" />
+
+5. Verify it running:
+
+           kubectl get pods -n kube-system | grep efs
+   
+  <img width="1737" height="131" alt="image" src="https://github.com/user-attachments/assets/e75aabb4-a7bf-4ea9-9026-eddfefca9960" />
