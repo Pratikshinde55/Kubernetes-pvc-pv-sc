@@ -254,16 +254,17 @@ In this type we don't use SC means directly use hostPath for my setup. We define
 
    In abhove image we can see that as sson we create pv and pv then they both bound at same time and not using any SC
 
+  By describe the pv we also able to see Hostpath location:
+  
+           kubectl describe pv manual-hostpath-pv
+           
+  <img width="1186" height="485" alt="image" src="https://github.com/user-attachments/assets/61e38fe8-fb56-4e5f-8430-6cf1c9b1b5c4" />
+  
 2. Now Run my-app: [YAML File name: my-app-manual-pv-pvc.yml]
 
         kubectl apply -f my-app-manual-pv-pvc.yml
 
   <img width="1193" height="435" alt="image" src="https://github.com/user-attachments/assets/f0338e34-c20c-468a-94a7-1a1de1e95a45" />
-
-By describe the pv we also able to see Hostpath:
-
-  <img width="1186" height="485" alt="image" src="https://github.com/user-attachments/assets/61e38fe8-fb56-4e5f-8430-6cf1c9b1b5c4" />
-
 
 3. Now test from EC2: On EC2 the hostPath store data at pv mentioned location that is **/data/myapp**
 
