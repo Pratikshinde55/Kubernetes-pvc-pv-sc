@@ -100,7 +100,7 @@ SC is one who helps to make dynamic gain persistent storage. Storage Class need 
 
  5. Create namespace:
 
-      kubectl create namespace ps-namespace
+        kubectl create namespace ps-namespace
 
 **Note:**
 - Namespaces are NOT created on nodes
