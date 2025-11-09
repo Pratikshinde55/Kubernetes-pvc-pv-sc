@@ -85,7 +85,10 @@ SC is one who helps to make dynamic gain persistent storage. Storage Class need 
         --managed \
         --node-labels node-type=ps \
         --enable-ssm
-    
+
+If labels to nodes not apply then run this command:
+
+         kubectl label node ip-192-168-2-134.ap-south-1.compute.internal node-type=ps
 
  5. Taint PS Node (prevent other workloads):
 
