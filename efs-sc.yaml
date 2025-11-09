@@ -1,0 +1,17 @@
+# in this sc i define efs file id and access point id
+# Not tested test in process
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs-sc
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: fs-0ffa68a5230f77946
+  #accessPointId: fsap-0f4c3ae4af4ac1fb2
+  directoryPerms: "0777"
+mountOptions:
+  - tls    # tls = encrypted EFS mount (recommended)
+reclaimPolicy: Retain   # eks not delete efs when we delete pv pvc sc
+volumeBindingMode: Immediate
+
