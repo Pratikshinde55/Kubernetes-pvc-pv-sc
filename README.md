@@ -238,3 +238,8 @@ Here i use ebs driver for this demo, Please chcek how do set-up for ebs gp3 driv
 
    Here 7a99da45-5654-4d95-93d4-9d39b57e8cc9 this is pod uid and kubernetes.io~csi this is driver name and pvc-b6cd57b2-ea9a-41a4-8aa6-3f566fcedc30 this is pvc claim name.
    
+9. check from Google:
+    <img width="1043" height="208" alt="image" src="https://github.com/user-attachments/assets/8cda8920-af67-48d1-b59b-8c56b50d353b" />
+
+
+# 2. PVC PV created manually:
